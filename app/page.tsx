@@ -461,8 +461,24 @@ function ContactSection() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="connect" className="bg-[#faf9f6] py-16 sm:py-24 lg:py-36">
-      <div ref={ref} className="px-[7.5%]">
+    <section id="connect" className="relative bg-[#faf9f6] py-16 sm:py-24 lg:py-36 overflow-hidden">
+      {/* Right — image, absolutely positioned to fill full section height on lg */}
+      <motion.div
+        initial={{ opacity: 0, x: 24 }}
+        animate={isInView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.85, delay: 0.25 }}
+        className="hidden lg:block absolute top-0 right-0 bottom-0"
+        style={{ width: "46%" }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/projectimages/rahma/View 07.jpg"
+          alt="Arden Holdings development"
+          className="w-full h-full object-cover"
+        />
+      </motion.div>
+
+      <div ref={ref} className="relative z-10 px-[7.5%]">
         {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
@@ -478,82 +494,79 @@ function ContactSection() {
           Get in touch
         </motion.h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-          {/* Left — contact blocks */}
-          <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.85, delay: 0.15 }}
-          >
-            {/* Clients */}
-            <div className="pb-10 border-b border-[#1a1a1a]/8">
-              <h3
-                className="font-sans text-[#c9a54a] mb-3 tracking-[0.06em]"
-                style={{ fontSize: "20px", fontWeight: 500 }}
-              >
-                Clients
-              </h3>
-              <p
-                className="font-sans text-[#1a1a1a] leading-[1.95] mb-5"
-                style={{ fontSize: "20px", maxWidth: "500px" }}
-              >
-                Discover exquisite apartments, commercial spaces, and investment
-                opportunities with Arden Holdings Ltd. Let us turn your dreams
-                into a reality.
-              </p>
-              <Link href="/contact" className="font-sans font-semibold text-[13px] tracking-[0.24em] uppercase text-[#1a1a1a] flex items-center gap-2 group hover:text-[#c9a54a] transition-colors">
-                Reach Out
-                <ArrowUpRight
-                  size={11}
-                  className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-                />
-              </Link>
-            </div>
-            {/* <Link href="/about" className="self-start font-sans font-semibold text-[13px] tracking-[0.24em] uppercase text-[#1a1a1a] flex items-center gap-2 group hover:text-[#c9a54a] transition-colors duration-300"> */}
-
-            {/* Landowners */}
-            <div className="pt-10">
-              <h3
-                className="font-sans text-[#c9a54a] mb-3 tracking-[0.06em]"
-                style={{ fontSize: "20px", fontWeight: 500 }}
-              >
-                Landowners
-              </h3>
-              <p
-                className="font-sans text-[#1a1a1a] leading-[1.95] mb-5"
-                style={{ fontSize: "20px", maxWidth: "500px" }}
-              >
-                Partner with Arden to further our portfolio as part of the
-                architectural landscape. Fill up the form to explore this
-                partnership.
-              </p>
-              <Link href="/contact?tab=landowners" className="font-sans font-semibold text-[13px] tracking-[0.24em] uppercase text-[#1a1a1a] flex items-center gap-2 group hover:text-[#c9a54a] transition-colors">
-                Partner With Us
-                <ArrowUpRight
-                  size={11}
-                  className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-                />
-              </Link>
-            </div>
-          </motion.div>
-
-          {/* Right — image */}
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.85, delay: 0.25 }}
-            className="h-full"
-          >
-            <div className="relative overflow-hidden h-full">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/projectimages/rahma/View 07.jpg"
-                alt="Arden Holdings development"
-                className="w-full h-full object-cover"
+        <motion.div
+          initial={{ opacity: 0, x: -24 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.85, delay: 0.15 }}
+          className="lg:w-1/2 lg:pr-20"
+        >
+          {/* Clients */}
+          <div className="pb-10 border-b border-[#1a1a1a]/8">
+            <h3
+              className="font-sans text-[#c9a54a] mb-3 tracking-[0.06em]"
+              style={{ fontSize: "20px", fontWeight: 500 }}
+            >
+              Clients
+            </h3>
+            <p
+              className="font-sans text-[#1a1a1a] leading-[1.95] mb-5"
+              style={{ fontSize: "20px", maxWidth: "500px" }}
+            >
+              Discover exquisite apartments, commercial spaces, and investment
+              opportunities with Arden Holdings Ltd. Let us turn your dreams
+              into a reality.
+            </p>
+            <Link href="/contact" className="font-sans font-semibold text-[13px] tracking-[0.24em] uppercase text-[#1a1a1a] flex items-center gap-2 group hover:text-[#c9a54a] transition-colors">
+              Reach Out
+              <ArrowUpRight
+                size={11}
+                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
               />
-            </div>
-          </motion.div>
-        </div>
+            </Link>
+          </div>
+
+          {/* Landowners */}
+          <div className="pt-10">
+            <h3
+              className="font-sans text-[#c9a54a] mb-3 tracking-[0.06em]"
+              style={{ fontSize: "20px", fontWeight: 500 }}
+            >
+              Landowners
+            </h3>
+            <p
+              className="font-sans text-[#1a1a1a] leading-[1.95] mb-5"
+              style={{ fontSize: "20px", maxWidth: "500px" }}
+            >
+              Partner with Arden to further our portfolio as part of the
+              architectural landscape. Fill up the form to explore this
+              partnership.
+            </p>
+            <Link href="/contact?tab=landowners" className="font-sans font-semibold text-[13px] tracking-[0.24em] uppercase text-[#1a1a1a] flex items-center gap-2 group hover:text-[#c9a54a] transition-colors">
+              Partner With Us
+              <ArrowUpRight
+                size={11}
+                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+              />
+            </Link>
+          </div>
+        </motion.div>
+
+        {/* Mobile image — shown below text on small screens */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.85, delay: 0.25 }}
+          className="lg:hidden mt-12"
+        >
+          <div className="relative overflow-hidden" style={{ aspectRatio: "4/3" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/projectimages/rahma/View 07.jpg"
+              alt="Arden Holdings development"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </motion.div>
       </div>
     </section>
   );
