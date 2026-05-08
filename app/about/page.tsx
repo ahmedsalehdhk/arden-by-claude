@@ -56,17 +56,13 @@ export default function AboutPage() {
       <Nav />
 
       {/* ── HERO ── */}
-      <section className="relative pt-[60px] overflow-hidden" style={{ minHeight: "90vh" }}>
-        <div className="absolute inset-0">
-          <Placeholder color="#1c1b1a" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1a1a1a]/60 via-[#1a1a1a]/20 to-[#faf9f6]" />
-        </div>
+      <section className="relative pt-[60px] overflow-hidden bg-white" style={{ minHeight: "90vh" }}>
         <div className="relative z-10 px-[7.5%] pt-24 sm:pt-36 pb-24 sm:pb-40">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="font-sans text-white/50 mb-6"
+            className="font-sans text-[#1a1a1a]/40 mb-6"
             style={{ fontSize: "12px", letterSpacing: "0.32em", textTransform: "uppercase" }}
           >
             About Arden
@@ -75,7 +71,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="font-serif text-white lowercase"
+            className="font-serif text-[#1a1a1a] lowercase"
             style={{
               fontSize: "clamp(3rem, 8vw, 8rem)",
               letterSpacing: "0.06em",
