@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import {
@@ -122,9 +122,9 @@ function Hero() {
             className="font-serif text-[#1a1a1a] text-center select-none w-full sm:whitespace-nowrap"
             style={{
               fontSize: "clamp(2.2rem, 4.5vw, 4.5vw)",
-              letterSpacing: "0.28em",
+              letterSpacing: "0.22em",
               lineHeight: 1.25,
-              fontWeight: 300,
+              fontWeight: 400,
             }}
           >
             <span className="hidden sm:inline">Legacy In Every Landmark</span>
@@ -219,7 +219,7 @@ function FeaturedProjectsSection() {
   const goNext = () => setActiveIndex((prev) => (prev + 1) % total);
 
   return (
-    <section id="projects" className="relative w-full overflow-hidden" style={{ height: "80vh" }}>
+    <section id="projects" className="relative w-full overflow-hidden h-[100svh] lg:h-[80vh]">
       {/* Background images — crossfade */}
       {FEATURED_PROJECTS.map((p, i) => (
         <div
@@ -242,7 +242,7 @@ function FeaturedProjectsSection() {
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col lg:flex-row lg:items-center lg:justify-between">
         {/* Building image — top on mobile, right column on desktop */}
-        <div className="lg:hidden flex justify-center pt-6 px-5 sm:px-8">
+        <div className="lg:hidden flex justify-center pt-8 sm:pt-10 px-5 sm:px-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}
@@ -255,15 +255,15 @@ function FeaturedProjectsSection() {
               <img
                 src={project.buildingImage}
                 alt={`${project.name} building`}
-                className="object-cover"
-                style={{ width: "55vw", maxWidth: "280px", height: "35vh", maxHeight: "300px" }}
+                className="object-cover shadow-lg"
+                style={{ width: "60vw", maxWidth: "320px", height: "38vh", maxHeight: "340px" }}
               />
             </motion.div>
           </AnimatePresence>
         </div>
 
         {/* Left column — text */}
-        <div className="flex flex-col justify-center px-5 sm:px-8 md:px-12 lg:px-20 max-w-2xl w-full lg:w-auto flex-1 pt-4 lg:pt-0">
+        <div className="flex flex-col justify-center px-5 sm:px-8 md:px-12 lg:px-20 max-w-2xl w-full lg:w-auto flex-1 pt-6 sm:pt-8 lg:pt-0">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}
