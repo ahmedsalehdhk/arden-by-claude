@@ -35,8 +35,8 @@ export const PROJECT_DETAILS: ProjectDetail[] = [
     status: "Ongoing",
     address: "Road 1, Block I, Banani, Dhaka",
     location: "Banani",
-    heroImage: "/projectimages/amanat/Front Side View_01.jpg",
-    buildingImage: "/projectimages/amanat/Eye Level View_01.jpg",
+    heroImage: "/projectimages/amanat/front-side-view-01.jpg",
+    buildingImage: "/projectimages/amanat/eye-level-view-01.jpg",
     specsLeft: [
       { label: "Land", value: "8 Katha" },
       { label: "Floors", value: "G + 12" },
@@ -69,8 +69,8 @@ export const PROJECT_DETAILS: ProjectDetail[] = [
     status: "Ongoing",
     address: "Road 410, Sector 11, Jolshiri",
     location: "Jolshiri",
-    heroImage: "/projectimages/rahma/View 02.jpg",
-    buildingImage: "/projectimages/rahma/View 01.jpg",
+    heroImage: "/projectimages/rahma/view-02.jpg",
+    buildingImage: "/projectimages/rahma/view-01.jpg",
     specsLeft: [
       { label: "Land", value: "10 Katha" },
       { label: "Floors", value: "G + 10" },

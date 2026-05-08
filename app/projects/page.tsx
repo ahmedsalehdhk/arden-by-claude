@@ -9,8 +9,8 @@ import ProjectCard from "../components/ProjectCard";
 
 // Project data extracted from Shanta — adapted for Arden
 const PROJECTS = [
-  { name: "Amanat", address: "Road 1, Block I, Banani, Dhaka", location: "Banani", status: "Ongoing", type: "Residential", image: "/projectimages/amanat/Front Side View_01.jpg" },
-  { name: "Rahma", address: "Road 410, Sector 11, Jolshiri", location: "Jolshiri", status: "Ongoing", type: "Residential", image: "/projectimages/rahma/View 02.jpg" },
+  { name: "Amanat", address: "Road 1, Block I, Banani, Dhaka", location: "Banani", status: "Ongoing", type: "Residential", image: "/projectimages/amanat/front-side-view-01.jpg" },
+  { name: "Rahma", address: "Road 410, Sector 11, Jolshiri", location: "Jolshiri", status: "Ongoing", type: "Residential", image: "/projectimages/rahma/view-02.jpg" },
 ];
 
 

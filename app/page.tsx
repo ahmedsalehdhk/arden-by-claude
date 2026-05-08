@@ -24,16 +24,16 @@ const FEATURED_PROJECTS = [
     tag: "Residential",
     name: "Amanat",
     location: "Banani, Dhaka",
-    image: "/projectimages/amanat/Front Side View_01.jpg",
-    buildingImage: "/projectimages/amanat/Eye Level View_01.jpg",
+    image: "/projectimages/amanat/front-side-view-01.jpg",
+    buildingImage: "/projectimages/amanat/eye-level-view-01.jpg",
   },
   {
     category: "Featured Projects",
     tag: "Residential",
     name: "Rahma",
     location: "Sector 11, Jolshiri",
-    image: "/projectimages/rahma/view 02.jpg",
-    buildingImage: "/projectimages/rahma/View 01.jpg",
+    image: "/projectimages/rahma/view-02.jpg",
+    buildingImage: "/projectimages/rahma/view-01.jpg",
   },
 ];
 
@@ -125,7 +125,7 @@ function Hero() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/projectimages/rahma/View 09.png"
+              src="/projectimages/rahma/view-09.png"
               alt="Luxury real estate development"
               className="w-full h-full object-cover"
             />
@@ -451,7 +451,7 @@ function ContactSection() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/projectimages/rahma/View 07.jpg"
+          src="/projectimages/rahma/view-07.jpg"
           alt="Arden Holdings development"
           className="w-full h-full object-cover"
         />
@@ -536,7 +536,7 @@ function ContactSection() {
           <div className="relative overflow-hidden" style={{ aspectRatio: "4/3" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/projectimages/rahma/View 07.jpg"
+              src="/projectimages/rahma/view-07.jpg"
               alt="Arden Holdings development"
               className="w-full h-full object-cover"
             />

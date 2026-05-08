@@ -112,7 +112,7 @@ export default function AboutPage() {
       <section className="w-full" style={{ height: "clamp(300px, 55vw, 700px)" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/projectimages/amanat/Rooftop _02.jpg"
+          src="/projectimages/amanat/rooftop-02.jpg"
           alt="Arden rooftop development"
           className="w-full h-full object-cover"
         />
