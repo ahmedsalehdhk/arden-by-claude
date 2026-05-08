@@ -38,13 +38,13 @@ const FEATURED_PROJECTS = [
 ];
 
 const LEFT_STATS = [
-  { value: 11, suffix: "M+", label: "Total Area Built\n(Million sft)" },
+  { value: 2, suffix: "M+", label: "Total Area Built\n(Million sft)" },
 ];
 
 const RIGHT_STATS = [
-  { value: 100, suffix: "+", label: "Number of\nProjects" },
-  { value: 1500, suffix: "+", label: "Happy Clients" },
-  { value: 18, suffix: "M+", label: "Total Area in Pipeline\n(Million sft)" },
+  { value: 32, suffix: "+", label: "Number of\nProjects" },
+  { value: 500, suffix: "+", label: "Happy Clients" },
+  { value: 4, suffix: "M+", label: "Total Area in Pipeline\n(Million sft)" },
 ];
 
 // ─────────────────────────────────────────────
@@ -191,11 +191,7 @@ function AboutSection() {
               className="font-sans font-medium text-[#1a1a1a] leading-[2] mb-10"
               style={{ fontSize: "20px" }}
             >
-              Our real estate portfolio is a mark of distinction. Featuring the
-              country&apos;s most selective developments, we promise investors
-              and buyers an unmatched level of service. Our success is built on
-              strong standards and a keen eye for detail, embodying luxury and
-              excellence.
+              Building the country's most selective projects requires more than just a vision—it requires a standard of excellence that never wavers. Discover a portfolio where luxury meets structural perfection.
             </p>
             <Link href="/about" className="self-start font-sans font-semibold text-[13px] tracking-[0.24em] uppercase text-[#1a1a1a] flex items-center gap-2 group hover:text-[#c9a54a] transition-colors duration-300">
               More about us
@@ -479,7 +475,7 @@ function ContactSection() {
             letterSpacing: "0.01em",
           }}
         >
-          Let&apos;s Connect
+          Get in touch
         </motion.h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
@@ -541,16 +537,17 @@ function ContactSection() {
             </div>
           </motion.div>
 
-          {/* Right — image placeholder */}
+          {/* Right — image */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.85, delay: 0.25 }}
+            className="h-full"
           >
-            <div className="relative overflow-hidden" style={{ aspectRatio: "4/3" }}>
+            <div className="relative overflow-hidden h-full">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/projectimages/amanat/High Eye level View_04.jpg"
+                src="/projectimages/rahma/View 07.jpg"
                 alt="Arden Holdings development"
                 className="w-full h-full object-cover"
               />
