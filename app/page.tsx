@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   motion,
   useScroll,
@@ -12,6 +12,7 @@ import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import LoadingScreen from "./components/LoadingScreen";
 
 // ─────────────────────────────────────────────
 // DATA
@@ -552,16 +553,39 @@ function ContactSection() {
 // PAGE
 // ─────────────────────────────────────────────
 
+// Key images to preload before revealing the site
+const PRELOAD_IMAGES = [
+  "/projectimages/rahma/view-09.png",
+  "/projectimages/amanat/front-side-view-01.jpg",
+  "/projectimages/rahma/view-02.jpg",
+  "/projectimages/amanat/eye-level-view-01.jpg",
+  "/projectimages/rahma/view-01.jpg",
+];
+
 export default function Home() {
+  const [loaded, setLoaded] = useState(false);
+  const handleLoadComplete = useCallback(() => setLoaded(true), []);
+
   return (
-    <main>
-      <Nav />
-      <Hero />
-      <AboutSection />
-      <FeaturedProjectsSection />
-      <StatisticsSection />
-      <ContactSection />
-      <Footer />
-    </main>
+    <>
+      <LoadingScreen
+        imagesToPreload={PRELOAD_IMAGES}
+        onComplete={handleLoadComplete}
+        minimumDuration={1800}
+      />
+      <motion.main
+        initial={{ opacity: 0 }}
+        animate={loaded ? { opacity: 1 } : {}}
+        transition={{ duration: 0.5 }}
+      >
+        <Nav />
+        <Hero />
+        <AboutSection />
+        <FeaturedProjectsSection />
+        <StatisticsSection />
+        <ContactSection />
+        <Footer />
+      </motion.main>
+    </>
   );
 }
