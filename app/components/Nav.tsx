@@ -65,7 +65,7 @@ export default function Nav() {
             : "border-b border-[#1a1a1a]/[0.07]"
         }`}
       >
-        <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14 h-[90px] flex items-center">
+        <div className="mx-auto flex items-center" style={{ paddingTop: "27px", paddingBottom: "27px", paddingLeft: "7.5%", paddingRight: "7.5%" }}>
           {/* Logo */}
           <Link href="/" className="flex items-center flex-shrink-0">
             <Image
