@@ -3,8 +3,10 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
+import { useIsLoaded } from "../context/LoadContext";
 
 const VALUES = [
   {
@@ -47,6 +49,8 @@ function FadeIn({ children, delay = 0, className = "" }: { children: React.React
 }
 
 export default function AboutPage() {
+  const isLoaded = useIsLoaded();
+
   return (
     <main className="bg-[#faf9f6]">
       <Nav />
@@ -56,7 +60,7 @@ export default function AboutPage() {
         <div className="relative z-10 px-[7.5%] pt-24 sm:pt-36 pb-24 sm:pb-40">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
             className="font-sans text-[#1a1a1a]/40 mb-6"
             style={{ fontSize: "12px", letterSpacing: "0.32em", textTransform: "uppercase" }}
@@ -65,7 +69,7 @@ export default function AboutPage() {
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 32 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="font-serif text-[#1a1a1a]"
             style={{
@@ -109,12 +113,14 @@ export default function AboutPage() {
       </section>
 
       {/* ── FULL-WIDTH IMAGE ── */}
-      <section className="w-full" style={{ height: "clamp(300px, 55vw, 700px)" }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+      <section className="w-full relative" style={{ height: "clamp(300px, 55vw, 700px)" }}>
+        <Image
           src="/projectimages/amanat/rooftop-02.jpg"
           alt="Arden rooftop development"
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover"
+          loading="lazy"
+          sizes="100vw"
         />
       </section>
 

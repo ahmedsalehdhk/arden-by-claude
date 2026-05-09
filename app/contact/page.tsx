@@ -6,6 +6,7 @@ import { motion, useInView } from "framer-motion";
 import { ArrowUpRight, Phone, Mail, MapPin } from "lucide-react";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
+import { useIsLoaded } from "../context/LoadContext";
 
 function Placeholder({ color = "#c2b9ab", className = "" }: { color?: string; className?: string }) {
   return <div className={`w-full h-full ${className}`} style={{ backgroundColor: color }} />;
@@ -58,6 +59,7 @@ function ContactInner() {
   const [activeForm, setActiveForm] = useState<FormType>("clients");
   const [submitted, setSubmitted] = useState(false);
   const searchParams = useSearchParams();
+  const isLoaded = useIsLoaded();
 
   useEffect(() => {
     if (searchParams.get("tab") === "landowners") {
@@ -80,7 +82,7 @@ function ContactInner() {
         <div className="relative z-10 px-[7.5%] pt-20 sm:pt-28 pb-16 sm:pb-24">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
             className="font-sans text-[#1a1a1a]/40 mb-6"
             style={{ fontSize: "14px", letterSpacing: "0.32em", textTransform: "uppercase" }}
@@ -89,7 +91,7 @@ function ContactInner() {
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 32 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="font-serif text-[#1a1a1a] uppercase"
             style={{

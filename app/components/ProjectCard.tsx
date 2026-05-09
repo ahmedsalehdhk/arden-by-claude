@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 
 export interface ProjectCardData {
@@ -23,11 +24,13 @@ export default function ProjectCard({ project }: { project: ProjectCardData }) {
           style={{ aspectRatio: "4/3" }}
         >
           {project.image ? (
-            /* eslint-disable-next-line @next/next/no-img-element */
-            <img
+            <Image
               src={project.image}
               alt={project.name}
-              className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+              fill
+              className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+              loading="lazy"
+              sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 30vw"
             />
           ) : (
             <div

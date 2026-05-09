@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { useIsLoaded } from "../context/LoadContext";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -20,19 +21,20 @@ export default function Nav() {
   const [hidden, setHidden] = useState(false);
   const [visible, setVisible] = useState(false);
   const pathname = usePathname();
+  const isLoaded = useIsLoaded();
 
-  // Entrance animation — slide down after hero loads
+  // Appear only after the global load gate opens
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(true), 200);
+    if (!isLoaded) return;
+    const timer = setTimeout(() => setVisible(true), 80);
     return () => clearTimeout(timer);
-  }, []);
+  }, [isLoaded]);
 
   useEffect(() => {
     let lastY = window.scrollY;
     const onScroll = () => {
       const y = window.scrollY;
       setScrolled(y > 50);
-      // Hide on scroll down, show on scroll up (only after passing 90px nav height)
       if (y > 90) {
         setHidden(y > lastY);
       } else {

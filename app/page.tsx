@@ -1,6 +1,6 @@
-﻿"use client";
+"use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   motion,
   useScroll,
@@ -10,14 +10,14 @@ import {
 } from "framer-motion";
 import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
-import LoadingScreen from "./components/LoadingScreen";
+import { useIsLoaded } from "./context/LoadContext";
 
 // ─────────────────────────────────────────────
 // DATA
 // ─────────────────────────────────────────────
-
 
 const FEATURED_PROJECTS = [
   {
@@ -78,6 +78,7 @@ function Hero() {
   const imageRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
   const clipPercent = useTransform(scrollY, [0, 600], [7.5, 0]);
+  const isLoaded = useIsLoaded();
 
   useEffect(() => {
     const unsub = clipPercent.on("change", (v) => {
@@ -95,7 +96,7 @@ function Hero() {
         <div className="overflow-hidden pb-3">
           <motion.h1
             initial={{ y: 110, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            animate={isLoaded ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="font-serif text-[#1a1a1a] text-center select-none uppercase w-full sm:whitespace-nowrap"
             style={{
@@ -111,11 +112,11 @@ function Hero() {
         </div>
       </div>
 
-      {/* Hero image placeholder */}
+      {/* Hero image */}
       <div className="relative w-full overflow-hidden" style={{ height: "78vh" }}>
         <motion.div
           initial={{ y: -60, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+          animate={isLoaded ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 1.2, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
           className="absolute inset-0"
         >
@@ -124,11 +125,13 @@ function Hero() {
             className="absolute inset-0 will-change-[clip-path]"
             style={{ clipPath: "inset(0 7.5%)" }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/projectimages/rahma/view-09.png"
               alt="Luxury real estate development"
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              priority
+              sizes="100vw"
             />
           </div>
         </motion.div>
@@ -158,15 +161,6 @@ function AboutSection() {
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-3xl"
           >
-            {/* <p
-              className="font-serif text-[#1a1a1a] leading-[1.25] mb-8"
-              style={{
-                fontSize: "clamp(1.55rem, 2.4vw, 2.1rem)",
-                fontWeight: 400,
-              }}
-            >
-              A mark of distinction in every development.
-            </p> */}
             <p
               className="font-sans font-medium text-[#1a1a1a] leading-[2] mb-10"
               style={{ fontSize: "20px" }}
@@ -208,11 +202,13 @@ function FeaturedProjectsSection() {
           className="absolute inset-0 transition-opacity duration-700 ease-in-out"
           style={{ opacity: i === activeIndex ? 1 : 0 }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={p.image}
             alt={p.name}
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            sizes="100vw"
+            loading="lazy"
           />
         </div>
       ))}
@@ -231,13 +227,19 @@ function FeaturedProjectsSection() {
               exit={{ opacity: 0, scale: 0.97 }}
               transition={{ duration: 0.6 }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={project.buildingImage}
-                alt={`${project.name} building`}
-                className="object-cover shadow-lg"
+              <div
+                className="relative shadow-lg"
                 style={{ width: "60vw", maxWidth: "320px", height: "38vh", maxHeight: "340px" }}
-              />
+              >
+                <Image
+                  src={project.buildingImage}
+                  alt={`${project.name} building`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 60vw, 320px"
+                  loading="lazy"
+                />
+              </div>
             </motion.div>
           </AnimatePresence>
         </div>
@@ -331,13 +333,16 @@ function FeaturedProjectsSection() {
               exit={{ opacity: 0, scale: 0.97 }}
               transition={{ duration: 0.6 }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={project.buildingImage}
-                alt={`${project.name} building`}
-                className="object-cover"
-                style={{ width: "320px", height: "65vh", maxHeight: "520px" }}
-              />
+              <div className="relative" style={{ width: "320px", height: "65vh", maxHeight: "520px" }}>
+                <Image
+                  src={project.buildingImage}
+                  alt={`${project.name} building`}
+                  fill
+                  className="object-cover"
+                  sizes="320px"
+                  loading="lazy"
+                />
+              </div>
             </motion.div>
           </AnimatePresence>
         </div>
@@ -450,11 +455,13 @@ function ContactSection() {
         className="hidden lg:block absolute top-0 right-0 bottom-0"
         style={{ width: "46%" }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src="/projectimages/rahma/view-07.jpg"
           alt="Arden Holdings development"
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover"
+          sizes="46vw"
+          loading="lazy"
         />
       </motion.div>
 
@@ -492,7 +499,7 @@ function ContactSection() {
               className="font-sans text-[#1a1a1a] leading-[1.95] mb-5"
               style={{ fontSize: "20px", maxWidth: "500px" }}
             >
-              Discover exclusive real estate opportunities designed for the modern investor. We don’t just develop land, we create landmarks that stand the test of time.
+              Discover exclusive real estate opportunities designed for the modern investor. We don&apos;t just develop land, we create landmarks that stand the test of time.
             </p>
             <Link href="/contact" className="font-sans font-semibold text-[13px] tracking-[0.24em] uppercase text-[#1a1a1a] flex items-center gap-2 group hover:text-[#c9a54a] transition-colors">
               Reach Out
@@ -535,11 +542,13 @@ function ContactSection() {
           className="lg:hidden mt-12"
         >
           <div className="relative overflow-hidden" style={{ aspectRatio: "4/3" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/projectimages/rahma/view-07.jpg"
               alt="Arden Holdings development"
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              sizes="85vw"
+              loading="lazy"
             />
           </div>
         </motion.div>
@@ -553,39 +562,22 @@ function ContactSection() {
 // PAGE
 // ─────────────────────────────────────────────
 
-// Key images to preload before revealing the site
-const PRELOAD_IMAGES = [
-  "/projectimages/rahma/view-09.png",
-  "/projectimages/amanat/front-side-view-01.jpg",
-  "/projectimages/rahma/view-02.jpg",
-  "/projectimages/amanat/eye-level-view-01.jpg",
-  "/projectimages/rahma/view-01.jpg",
-];
-
 export default function Home() {
-  const [loaded, setLoaded] = useState(false);
-  const handleLoadComplete = useCallback(() => setLoaded(true), []);
+  const isLoaded = useIsLoaded();
 
   return (
-    <>
-      <LoadingScreen
-        imagesToPreload={PRELOAD_IMAGES}
-        onComplete={handleLoadComplete}
-        minimumDuration={1800}
-      />
-      <motion.main
-        initial={{ opacity: 0 }}
-        animate={loaded ? { opacity: 1 } : {}}
-        transition={{ duration: 0.5 }}
-      >
-        <Nav />
-        <Hero />
-        <AboutSection />
-        <FeaturedProjectsSection />
-        <StatisticsSection />
-        <ContactSection />
-        <Footer />
-      </motion.main>
-    </>
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={isLoaded ? { opacity: 1 } : {}}
+      transition={{ duration: 0.5 }}
+    >
+      <Nav />
+      <Hero />
+      <AboutSection />
+      <FeaturedProjectsSection />
+      <StatisticsSection />
+      <ContactSection />
+      <Footer />
+    </motion.main>
   );
 }

@@ -6,6 +6,7 @@ import { ArrowUpRight } from "lucide-react";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import ProjectCard from "../components/ProjectCard";
+import { useIsLoaded } from "../context/LoadContext";
 
 // Project data extracted from Shanta — adapted for Arden
 const PROJECTS = [
@@ -32,6 +33,7 @@ function FadeIn({ children, delay = 0, className = "" }: { children: React.React
 
 export default function ProjectsPage() {
   const [query, setQuery] = useState("");
+  const isLoaded = useIsLoaded();
 
   const filtered = PROJECTS.filter((p) => {
     if (!query.trim()) return true;
@@ -48,7 +50,7 @@ export default function ProjectsPage() {
         <div className="relative z-10 px-[7.5%] pt-20 sm:pt-32 pb-20 sm:pb-28">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
             className="font-sans text-[#1a1a1a]/40 mb-6"
             style={{ fontSize: "12px", letterSpacing: "0.32em", textTransform: "uppercase" }}
@@ -57,7 +59,7 @@ export default function ProjectsPage() {
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 32 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="font-serif text-[#1a1a1a] uppercase"
             style={{
